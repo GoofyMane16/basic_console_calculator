@@ -1,13 +1,15 @@
 import argparse
-parser = argparse.ArgumentParser(
-                    prog='ProgramName',
-                    description='What the program does',
-                    epilog='Text at the bottom of help')
+operation = {'add': None, 'sub': None, 'mul': None, 'div': None}
 
-parser.add_argument('filename')           # positional argument
-parser.add_argument('-c', '--count')      # option that takes a value
-parser.add_argument('-v', '--verbose',
-                    action='store_true')  # on/off flag
-args = parser.parse_args()
-print(args, type(args))
-print(args.filename, args.count, args.verbose)
+#main.py add 5, 2 -> 7
+#main.py sub 20, 50 -> -30
+parser = argparse.ArgumentParser(
+    description='basic console calculator',
+)
+
+parser.add_argument('operation', choices=['add', 'sub', 'mul', 'div'], type=str)
+parser.add_argument('num1', type=float)
+parser.add_argument('num2', type=float)
+arguments = parser.parse_args()
+
+print(arguments)
